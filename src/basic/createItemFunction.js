@@ -24,11 +24,17 @@ export default function createItemFunction(inventory, playerAttributes,isModalOp
     }
   }
 
+  function consumeTime(time) {
+    playerAttributes.time += time;
+  }
+
   return {
     eat: {
+      name:"eat",
       transName: "吃",
-      fn: function (itemName) {
+      run: function (itemName,timeConsume) {
         consumeInventory(itemName);
+        consumeTime(timeConsume)
         updatePlayerAttributes(itemCardData[itemName]);
         isModalOpen.value = false;
       },
